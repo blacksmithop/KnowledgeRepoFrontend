@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-height: 64px;
+  --footer-height: 48px;
+  --color-primary: #6366f1;
+  --color-secondary: #8b5cf6;
+  --color-accent: #ec4899;
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+}
+
+.main-content {
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin-top: var(--header-height);
+  margin-bottom: var(--footer-height);
+}
+
+.tree-line {
+  @apply border-l-2 border-indigo-200 ml-4 pl-4;
+}
+
+.tree-node::before {
+  content: '';
+  @apply absolute w-4 h-0.5 bg-indigo-200 left-0 top-1/2 -translate-y-1/2;
+}
