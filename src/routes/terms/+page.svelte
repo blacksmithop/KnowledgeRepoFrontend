@@ -10,11 +10,14 @@
 <div class="container mx-auto px-4 py-8" in:fade>
 	<div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
 		<h1 class="text-3xl font-bold text-gray-900 mb-6">Terms of Service</h1>
-		
+
 		<div class="space-y-6 text-gray-700">
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">1. Acceptance of Terms</h2>
-				<p>By accessing and using KnowledgeRepo, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+				<p>
+					By accessing and using KnowledgeRepo, you agree to be bound by these Terms of Service and
+					all applicable laws and regulations.
+				</p>
 			</section>
 
 			<section>
@@ -39,22 +42,34 @@
 
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">4. Intellectual Property</h2>
-				<p>All content and materials available through KnowledgeRepo are protected by intellectual property rights. Users retain ownership of their content but grant us a license to use it.</p>
+				<p>
+					All content and materials available through KnowledgeRepo are protected by intellectual
+					property rights. Users retain ownership of their content but grant us a license to use it.
+				</p>
 			</section>
 
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">5. Limitation of Liability</h2>
-				<p>KnowledgeRepo is provided "as is" without any warranties. We are not liable for any damages arising from your use of our services.</p>
+				<p>
+					KnowledgeRepo is provided "as is" without any warranties. We are not liable for any
+					damages arising from your use of our services.
+				</p>
 			</section>
 
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">6. Termination</h2>
-				<p>We reserve the right to terminate or suspend access to our services for violations of these terms or for any other reason at our discretion.</p>
+				<p>
+					We reserve the right to terminate or suspend access to our services for violations of
+					these terms or for any other reason at our discretion.
+				</p>
 			</section>
 
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">7. Changes to Terms</h2>
-				<p>We may modify these terms at any time. Continued use of our services constitutes acceptance of the modified terms.</p>
+				<p>
+					We may modify these terms at any time. Continued use of our services constitutes
+					acceptance of the modified terms.
+				</p>
 			</section>
 
 			<section>

@@ -1,6 +1,6 @@
 <script>
 	import { slide } from 'svelte/transition';
-	
+
 	const menuData = [
 		{
 			title: 'Home',
@@ -89,6 +89,7 @@
 	}
 </script>
 
+--save-dev
 <nav class="bg-white w-64 shadow-lg border-r h-full overflow-y-auto">
 	{#each menuData as item}
 		<div class="border-b border-gray-100 last:border-b-0">
@@ -102,12 +103,19 @@
 						<span class="font-medium">{item.title}</span>
 					</span>
 					<svg
-						class="w-4 h-4 transform transition-transform {isExpanded(item.title) ? 'rotate-90' : ''}"
+						class="w-4 h-4 transform transition-transform {isExpanded(item.title)
+							? 'rotate-90'
+							: ''}"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
 					>
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M9 5l7 7-7 7"
+						/>
 					</svg>
 				</button>
 				{#if isExpanded(item.title)}
@@ -121,12 +129,21 @@
 									>
 										<span class="font-medium text-gray-700">{subItem.title}</span>
 										<svg
-											class="w-4 h-4 transform transition-transform {isExpanded(`${item.title}-${subItem.title}`) ? 'rotate-90' : ''}"
+											class="w-4 h-4 transform transition-transform {isExpanded(
+												`${item.title}-${subItem.title}`
+											)
+												? 'rotate-90'
+												: ''}"
 											fill="none"
 											stroke="currentColor"
 											viewBox="0 0 24 24"
 										>
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M9 5l7 7-7 7"
+											/>
 										</svg>
 									</button>
 									{#if isExpanded(`${item.title}-${subItem.title}`)}

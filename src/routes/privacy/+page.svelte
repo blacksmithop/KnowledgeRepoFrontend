@@ -10,7 +10,7 @@
 <div class="container mx-auto px-4 py-8" in:fade>
 	<div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
 		<h1 class="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
-		
+
 		<div class="space-y-6 text-gray-700">
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">Information We Collect</h2>
@@ -36,7 +36,10 @@
 
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">Data Security</h2>
-				<p>We implement appropriate security measures to protect your personal information, including:</p>
+				<p>
+					We implement appropriate security measures to protect your personal information,
+					including:
+				</p>
 				<ul class="list-disc pl-6 space-y-2">
 					<li>Encryption of data in transit and at rest</li>
 					<li>Regular security assessments</li>
@@ -67,7 +70,10 @@
 
 			<section>
 				<h2 class="text-xl font-semibold text-gray-800 mb-3">Updates to This Policy</h2>
-				<p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+				<p>
+					We may update this Privacy Policy from time to time. We will notify you of any changes by
+					posting the new Privacy Policy on this page and updating the "Last Updated" date.
+				</p>
 				<p class="mt-4 text-sm text-gray-600">Last Updated: January 1, 2024</p>
 			</section>
 		</div>

@@ -1,12 +1,12 @@
 <script>
 	import { slide } from 'svelte/transition';
 	import KnowledgeCard from './KnowledgeCard.svelte';
-	
+
 	export let categories;
-	
+
 	let expandedCategories = new Set();
 	let expandedSubcategories = new Set();
-	
+
 	function toggleCategory(categoryTitle) {
 		if (expandedCategories.has(categoryTitle)) {
 			expandedCategories.delete(categoryTitle);
@@ -15,7 +15,7 @@
 		}
 		expandedCategories = expandedCategories;
 	}
-	
+
 	function toggleSubcategory(categoryTitle, subcategoryTitle) {
 		const key = `${categoryTitle}-${subcategoryTitle}`;
 		if (expandedSubcategories.has(key)) {
@@ -37,7 +37,9 @@
 				<span class="text-2xl">{category.icon}</span>
 				<span>{category.title}</span>
 				<svg
-					class="w-5 h-5 transform transition-transform {expandedCategories.has(category.title) ? 'rotate-90' : ''}"
+					class="w-5 h-5 transform transition-transform {expandedCategories.has(category.title)
+						? 'rotate-90'
+						: ''}"
 					fill="none"
 					stroke="currentColor"
 					viewBox="0 0 24 24"
@@ -45,13 +47,13 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 				</svg>
 			</button>
-			
+
 			{#if expandedCategories.has(category.title)}
 				<div class="tree-line" transition:slide>
 					{#each category.items as item}
 						<div class="relative tree-node">
 							<KnowledgeCard {...item} />
-							
+
 							{#if item.subcategories}
 								{#each item.subcategories as subcategory}
 									<div class="mt-4">
@@ -61,15 +63,24 @@
 										>
 											<span>└─ {subcategory.title}</span>
 											<svg
-												class="w-4 h-4 transform transition-transform {expandedSubcategories.has(`${item.title}-${subcategory.title}`) ? 'rotate-90' : ''}"
+												class="w-4 h-4 transform transition-transform {expandedSubcategories.has(
+													`${item.title}-${subcategory.title}`
+												)
+													? 'rotate-90'
+													: ''}"
 												fill="none"
 												stroke="currentColor"
 												viewBox="0 0 24 24"
 											>
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M9 5l7 7-7 7"
+												/>
 											</svg>
 										</button>
-										
+
 										{#if expandedSubcategories.has(`${item.title}-${subcategory.title}`)}
 											<div class="tree-line mt-4" transition:slide>
 												{#each subcategory.items as subitem}
