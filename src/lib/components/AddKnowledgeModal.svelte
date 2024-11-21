@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { fade, scale } from 'svelte/transition';
 	import RichTextEditor from './RichTextEditor.svelte';
 	
 	const dispatch = createEventDispatcher();
@@ -44,27 +44,28 @@
 </script>
 
 <div
-	class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+	class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto"
 	on:click={closeModal}
-	transition:fade
+	transition:fade={{ duration: 200 }}
 >
 	<div
-		class="bg-white rounded-lg shadow-xl w-full max-w-2xl"
+		class="bg-white rounded-xl shadow-xl w-full max-w-2xl my-8"
 		on:click|stopPropagation
+		transition:scale={{ duration: 200, start: 0.95 }}
 	>
-		<div class="p-6">
-			<div class="flex justify-between items-center mb-6">
-				<h2 class="text-2xl font-bold text-gray-900">Add Knowledge Item</h2>
-				<button
-					class="text-gray-400 hover:text-gray-500"
-					on:click={closeModal}
-				>
-					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-					</svg>
-				</button>
-			</div>
-			
+		<div class="flex justify-between items-center p-6 border-b">
+			<h2 class="text-2xl font-bold text-gray-900">Add Knowledge Item</h2>
+			<button
+				class="text-gray-400 hover:text-gray-500 hover:rotate-90 transform transition-all duration-200"
+				on:click={closeModal}
+			>
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+				</svg>
+			</button>
+		</div>
+		
+		<div class="p-6 max-h-[calc(100vh-16rem)] overflow-y-auto">
 			<form on:submit|preventDefault={handleSubmit} class="space-y-6">
 				<div>
 					<label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -72,19 +73,23 @@
 						type="text"
 						id="title"
 						bind:value={title}
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+						class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-shadow duration-200"
 						required
 					/>
 				</div>
 				
 				<div>
-					<label class="block text-sm font-medium text-gray-700">Description</label>
-					<RichTextEditor bind:content={description} placeholder="Enter description..." />
+					<label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+					<div class="editor-container">
+						<RichTextEditor bind:content={description} placeholder="Enter description..." />
+					</div>
 				</div>
 				
 				<div>
-					<label class="block text-sm font-medium text-gray-700">Example Code</label>
-					<RichTextEditor bind:content={example} placeholder="Enter example code..." />
+					<label class="block text-sm font-medium text-gray-700 mb-1">Example Code</label>
+					<div class="editor-container">
+						<RichTextEditor bind:content={example} placeholder="Enter example code..." />
+					</div>
 				</div>
 				
 				<div>
@@ -94,11 +99,11 @@
 						id="tags"
 						bind:value={tags}
 						placeholder="frontend, javascript, react..."
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+						class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-shadow duration-200"
 					/>
 				</div>
 				
-				<div class="grid grid-cols-2 gap-4">
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 					<div>
 						<label class="block text-sm font-medium text-gray-700">Category</label>
 						{#if isAddingNewCategory}
@@ -106,12 +111,12 @@
 								type="text"
 								bind:value={newCategory}
 								placeholder="New category name"
-								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+								class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-shadow duration-200"
 							/>
 						{:else}
 							<select
 								bind:value={selectedCategory}
-								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+								class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-shadow duration-200"
 							>
 								<option value="">Select category</option>
 								{#each categories as category}
@@ -121,7 +126,7 @@
 						{/if}
 						<button
 							type="button"
-							class="mt-2 text-sm text-indigo-600 hover:text-indigo-500"
+							class="mt-2 text-sm text-indigo-600 hover:text-indigo-500 hover:underline transition-colors duration-200"
 							on:click={() => isAddingNewCategory = !isAddingNewCategory}
 						>
 							{isAddingNewCategory ? 'Select existing category' : 'Add new category'}
@@ -135,12 +140,12 @@
 								type="text"
 								bind:value={newSubcategory}
 								placeholder="New subcategory name"
-								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+								class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-shadow duration-200"
 							/>
 						{:else}
 							<select
 								bind:value={selectedSubcategory}
-								class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+								class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition-shadow duration-200"
 								disabled={!selectedCategory && !isAddingNewCategory}
 							>
 								<option value="">Select subcategory</option>
@@ -151,30 +156,54 @@
 						{/if}
 						<button
 							type="button"
-							class="mt-2 text-sm text-indigo-600 hover:text-indigo-500"
+							class="mt-2 text-sm text-indigo-600 hover:text-indigo-500 hover:underline transition-colors duration-200"
 							on:click={() => isAddingNewSubcategory = !isAddingNewSubcategory}
 						>
 							{isAddingNewSubcategory ? 'Select existing subcategory' : 'Add new subcategory'}
 						</button>
 					</div>
 				</div>
-				
-				<div class="flex justify-end gap-4">
-					<button
-						type="button"
-						class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 border rounded-md"
-						on:click={closeModal}
-					>
-						Cancel
-					</button>
-					<button
-						type="submit"
-						class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md"
-					>
-						Add Item
-					</button>
-				</div>
 			</form>
+		</div>
+
+		<div class="p-6 border-t bg-gray-50">
+			<div class="flex justify-end gap-4">
+				<button
+					type="button"
+					class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 border rounded-lg transition-colors duration-200"
+					on:click={closeModal}
+				>
+					Cancel
+				</button>
+				<button
+					type="submit"
+					class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transform hover:scale-105 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg"
+				>
+					Add Item
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
+
+<style lang="postcss">
+	.editor-container {
+		@apply overflow-y-auto rounded-lg border border-gray-200 min-h-[150px] max-h-[300px];
+	}
+	
+	.editor-container::-webkit-scrollbar {
+		@apply w-2;
+	}
+	
+	.editor-container::-webkit-scrollbar-track {
+		@apply bg-gray-100 rounded-r-lg;
+	}
+	
+	.editor-container::-webkit-scrollbar-thumb {
+		@apply bg-gray-300 rounded-full;
+	}
+	
+	.editor-container::-webkit-scrollbar-thumb:hover {
+		@apply bg-gray-400;
+	}
+</style>

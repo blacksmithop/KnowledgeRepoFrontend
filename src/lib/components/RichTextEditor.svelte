@@ -22,7 +22,7 @@
 			content: content,
 			editorProps: {
 				attributes: {
-					class: 'prose prose-sm sm:prose max-w-none focus:outline-none min-h-[200px] p-4'
+					class: 'prose prose-sm sm:prose max-w-none focus:outline-none min-h-[100px] p-4'
 				}
 			},
 			onUpdate: ({ editor }) => {
@@ -50,10 +50,10 @@
 	}
 </script>
 
-<div class="border rounded-lg overflow-hidden bg-white">
-	<div class="border-b px-3 py-2 flex gap-2">
+<div class="bg-white rounded-lg overflow-hidden">
+	<div class="border-b px-3 py-2 flex gap-2 bg-gray-50">
 		<button
-			class="p-1 hover:bg-gray-100 rounded {editor?.isActive('bold') ? 'bg-gray-100' : ''}"
+			class="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 {editor?.isActive('bold') ? 'bg-gray-200' : ''}"
 			on:click={toggleBold}
 			title="Bold"
 		>
@@ -62,7 +62,7 @@
 			</svg>
 		</button>
 		<button
-			class="p-1 hover:bg-gray-100 rounded {editor?.isActive('italic') ? 'bg-gray-100' : ''}"
+			class="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 {editor?.isActive('italic') ? 'bg-gray-200' : ''}"
 			on:click={toggleItalic}
 			title="Italic"
 		>
@@ -71,7 +71,7 @@
 			</svg>
 		</button>
 		<button
-			class="p-1 hover:bg-gray-100 rounded {editor?.isActive('code') ? 'bg-gray-100' : ''}"
+			class="p-1.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 {editor?.isActive('code') ? 'bg-gray-200' : ''}"
 			on:click={toggleCode}
 			title="Code"
 		>
@@ -80,5 +80,5 @@
 			</svg>
 		</button>
 	</div>
-	<div bind:this={element} />
+	<div bind:this={element} class="overflow-y-auto" />
 </div>
